@@ -1,7 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import {FiSun} from 'react-icons/fi'
 // internal imports
-import { MainContaienr } from '../components/styled/Container';
+import { MainContaienr, Container, Flex } from '../components/styled/Layout';
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +17,15 @@ const Home: NextPage = () => {
       </Head>
 
       <MainContaienr>
-        <h1>Hello</h1>
+        <Container>
+          <Flex jc="space-between">
+            <h1>devfinder</h1>
+            <Flex>
+              <p>Light</p>
+              <FiSun/>
+            </Flex>
+          </Flex>
+        </Container>
       </MainContaienr>
     </>
   );
