@@ -1,10 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import {FiSun} from 'react-icons/fi'
+import { FiSun } from 'react-icons/fi';
+import { useContext } from 'react';
 // internal imports
 import { MainContaienr, Container, Flex } from '../components/styled/Layout';
+import { ButtonTr } from '../components/styled/Button';
+import { GlobalState } from '../pages/_app';
 
 const Home: NextPage = () => {
+  const { toggle } = useContext(GlobalState);
+
   return (
     <>
       <Head>
@@ -20,10 +25,14 @@ const Home: NextPage = () => {
         <Container>
           <Flex jc="space-between">
             <h1>devfinder</h1>
-            <Flex>
-              <p>Light</p>
-              <FiSun/>
-            </Flex>
+
+            {/* --------------------- theme switcher ----------------- */}
+            <ButtonTr onClick={toggle}>
+              <Flex>
+                <p>Light</p>
+                <FiSun />
+              </Flex>
+            </ButtonTr>
           </Flex>
         </Container>
       </MainContaienr>

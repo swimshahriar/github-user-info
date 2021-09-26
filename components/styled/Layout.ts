@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const MainContaienr = styled.main`
-  background: ${({ theme }) => theme.colors.body};
-
   display: flex;
   align-items: center;
   justify-content: center;
