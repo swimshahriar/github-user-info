@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { MainContaienr, Container, Flex } from '../components/styled/Layout';
 import { ButtonTr } from '../components/styled/Button';
 import { GlobalState } from '../pages/_app';
+import SearchBox from '../components/SearchBox';
 
 const Home: NextPage = () => {
   const { toggle } = useContext(GlobalState);
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
       </Head>
 
       <MainContaienr>
+        {/* -------------------- header ------------------- */}
         <Container>
           <Flex jc="space-between">
             <h1>devfinder</h1>
@@ -34,6 +36,11 @@ const Home: NextPage = () => {
               </Flex>
             </ButtonTr>
           </Flex>
+        </Container>
+
+        {/* -------------------- search area ------------------- */}
+        <Container>
+          <SearchBox />
         </Container>
       </MainContaienr>
     </>

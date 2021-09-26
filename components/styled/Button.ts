@@ -7,3 +7,13 @@ export const ButtonTr = styled.button`
   font-size: large;
   cursor: pointer;
 `;
+
+export const PrimaryBtn = styled.button`
+  padding: 0.5rem;
+  outline: none;
+  border: 0.5rem;
+  border-radius: 0.5rem;
+
+  background: ${({ theme }) => theme.colors.primary};
+  color: ${'#fff !important'};
+`;
