@@ -5,9 +5,9 @@ export const InputField = styled.input`
   width: 100%;
   height: 3rem;
   outline: none;
-  border: 0.3rem;
+  border: none;
   border-radius: 0.5rem;
-  padding: 0.2rem 2.5rem;
+  padding: 0.2rem 6.5rem 0.2rem 2.5rem;
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.font};
 `;

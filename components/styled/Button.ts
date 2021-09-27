@@ -10,7 +10,7 @@ export const ButtonTr = styled.button`
 
 export const PrimaryBtn = styled.button`
   padding: 0.5rem 0.8rem;
-  border: 0.3rem;
+  border: none;
   border-radius: 0.5rem;
   outline: none;
   font-size: 1rem;

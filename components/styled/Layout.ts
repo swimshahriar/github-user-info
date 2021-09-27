@@ -18,6 +18,11 @@ export const Flex = styled.div`
   justify-content: ${({ jc }: { jc?: string }) => jc || 'center'};
   align-items: center;
   gap: 1rem;
+
+  @media (max-width: ${({ theme }) => theme.mediaQueries.mobile}) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 export const SearchContainer = styled.div`
@@ -44,7 +49,7 @@ export const SearchContainer = styled.div`
 
   @media (max-width: ${({ theme }) => theme.mediaQueries.mobile}) {
     & > input {
-      padding: .2rem 2rem;
+      padding: 0.2rem 5.5rem 0.2rem 2rem;
       font-size: 1rem;
     }
 
@@ -55,6 +60,38 @@ export const SearchContainer = styled.div`
 
     & > button {
       padding: 0.5rem;
+    }
+  }
+`;
+
+export const Card = styled.div`
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  background: ${({ theme }) => theme.colors.secondary};
+
+  & > div > div > img {
+    border-radius: 50%;
+  }
+
+  & > div > div > h2 {
+    margin: 0;
+  }
+
+  & > div > div > p {
+    color: ${({ theme }) => theme.colors.primary};
+    margin: 0;
+  }
+
+  & > div > p {
+    color: ${({ theme }) => theme.colors.fontLight};
+    font-weight: lighter;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mediaQueries.mobile}) {
+    & > div > div {
+      display: grid;
+      place-items: center;
     }
   }
 `;
