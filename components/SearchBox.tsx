@@ -25,7 +25,7 @@ const SearchBox: React.FC<PropType> = ({
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <PrimaryBtn onClick={searchHandler}>search</PrimaryBtn>
+        <PrimaryBtn onClick={() => searchHandler()}>search</PrimaryBtn>
       </SearchContainer>
     </Container>
   );
