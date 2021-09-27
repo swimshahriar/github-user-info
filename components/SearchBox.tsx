@@ -1,17 +1,32 @@
+import React from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { PrimaryBtn } from './styled/Button';
 import { InputField } from './styled/Input';
 // internal imports
-import { Container, Flex } from './styled/Layout';
+import { Container, SearchContainer } from './styled/Layout';
 
-const SearchBox = () => {
+interface PropType {
+  username: string;
+  setUsername: Function;
+  searchHandler: Function;
+}
+
+const SearchBox: React.FC<PropType> = ({
+  username,
+  setUsername,
+  searchHandler,
+}) => {
   return (
     <Container>
-      <Flex>
+      <SearchContainer>
         <FiSearch />
-        <InputField />
-        <PrimaryBtn>search</PrimaryBtn>
-      </Flex>
+        <InputField
+          placeholder="Github username..."
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <PrimaryBtn onClick={searchHandler}>search</PrimaryBtn>
+      </SearchContainer>
     </Container>
   );
 };
