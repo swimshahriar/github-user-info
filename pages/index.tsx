@@ -9,6 +9,7 @@ import {
   Container,
   Flex,
   Card,
+  InnerCard,
 } from '../components/styled/Layout';
 import { ButtonTr } from '../components/styled/Button';
 import { GlobalState } from '../pages/_app';
@@ -111,6 +112,27 @@ const Home: NextPage<PropType> = ({ info, error }) => {
                 </div>
                 <p>{new Date(userInfo.created_at).toDateString()}</p>
               </Flex>
+              <Flex>
+                <p>{userInfo.bio || 'no bio added.'}</p>
+              </Flex>
+
+              {/* -------------------- inner card -------------------- */}
+              <InnerCard>
+                <Flex jc="space-between">
+                  <div>
+                    <p>Repos</p>
+                    <p>{userInfo.public_repos}</p>
+                  </div>
+                  <div>
+                    <p>Followers</p>
+                    <p>{userInfo.followers}</p>
+                  </div>
+                  <div>
+                    <p>Following</p>
+                    <p>{userInfo.following}</p>
+                  </div>
+                </Flex>
+              </InnerCard>
             </Card>
           )}
         </Container>

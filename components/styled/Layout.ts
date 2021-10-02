@@ -95,3 +95,16 @@ export const Card = styled.div`
     }
   }
 `;
+
+export const InnerCard = styled.div`
+  margin: 0 auto;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.5rem;
+  width: 50%;
+
+  background: ${({ theme }) => theme.colors.body};
+
+  @media (max-width: ${({ theme }) => theme.mediaQueries.mobile}) {
+    width: 90%;
+  }
+`;
