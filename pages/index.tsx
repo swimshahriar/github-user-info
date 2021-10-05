@@ -1,6 +1,7 @@
 import type { NextPage, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import { FaMapMarkerAlt, FaTwitter, FaLink, FaBuilding } from 'react-icons/fa';
 import { useContext, useState } from 'react';
 import Image from 'next/image';
 // internal imports
@@ -10,6 +11,7 @@ import {
   Flex,
   Card,
   InnerCard,
+  SocialContainer,
 } from '../components/styled/Layout';
 import { ButtonTr } from '../components/styled/Button';
 import { GlobalState } from '../pages/_app';
@@ -25,25 +27,28 @@ const Home: NextPage<PropType> = ({ info, error }) => {
   const [username, setUsername] = useState('');
   const [userInfo, setUserInfo] = useState(info ? info : null);
   const [errorMsg, setErrorMsg] = useState(error ? error : null);
-
-  console.log(userInfo);
+  const [isLoading, setIsLoading] = useState(false);
 
   // search handler
   const searchHandler = async () => {
     setErrorMsg(null);
     if (username !== '') {
+      setIsLoading(true);
       try {
         const res = await fetch(`https://api.github.com/users/${username}`);
         const parsedInfo = await res.json();
+
         if (parsedInfo.message) {
           setErrorMsg(parsedInfo.message);
           setUserInfo(null);
         } else {
           setUserInfo(parsedInfo);
         }
+        setIsLoading(false);
       } catch (err: any) {
         setErrorMsg(err.message);
         setUserInfo(null);
+        setIsLoading(false);
       }
     }
   };
@@ -90,13 +95,16 @@ const Home: NextPage<PropType> = ({ info, error }) => {
             username={username}
             setUsername={setUsername}
             searchHandler={searchHandler}
+            isLoading={isLoading}
           />
         </Container>
 
         {/* -------------------- user info --------------------- */}
         <Container>
           {errorMsg && <p>{errorMsg}</p>}
-          {userInfo && (
+          {isLoading && <h4>Loading...</h4>}
+
+          {userInfo && !isLoading && (
             <Card>
               <Flex jc="space-between">
                 <Image
@@ -107,8 +115,8 @@ const Home: NextPage<PropType> = ({ info, error }) => {
                 />
 
                 <div>
-                  <h2>{userInfo.name}</h2>
-                  <p>@{userInfo.login}</p>
+                  <h2>{userInfo.name || 'no name'}</h2>
+                  <p>@{userInfo.login || 'no username'}</p>
                 </div>
                 <p>{new Date(userInfo.created_at).toDateString()}</p>
               </Flex>
@@ -133,6 +141,42 @@ const Home: NextPage<PropType> = ({ info, error }) => {
                   </div>
                 </Flex>
               </InnerCard>
+
+              {/* ---------------------- address and social --------------------- */}
+              <SocialContainer>
+                <Flex jc="space-between">
+                  <p>
+                    <span>
+                      <FaMapMarkerAlt />
+                    </span>
+                    {userInfo.location || 'no location'}
+                  </p>
+                  <a
+                    href={`https://twitter.com/${userInfo.twitter_username}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>
+                      <FaTwitter />
+                    </span>
+                    {userInfo.twitter_username || 'no username'}
+                  </a>
+                </Flex>
+                <Flex jc="space-between">
+                  <a href={userInfo.blog} target="_blank" rel="noreferrer">
+                    <span>
+                      <FaLink />
+                    </span>
+                    {userInfo.blog || 'no website'}
+                  </a>
+                  <p>
+                    <span>
+                      <FaBuilding />
+                    </span>
+                    {userInfo.company || 'no company'}
+                  </p>
+                </Flex>
+              </SocialContainer>
             </Card>
           )}
         </Container>

@@ -108,3 +108,25 @@ export const InnerCard = styled.div`
     width: 90%;
   }
 `;
+
+export const SocialContainer = styled.div`
+  margin: 1rem auto;
+  width: 70%;
+
+  & > div > p,
+  & > div > a {
+    color: ${({ theme }) => theme.colors.font} !important;
+  }
+
+  & svg {
+    margin: 0 0.5rem;
+  }
+
+  & > div > a {
+    text-decoration: none;
+  }
+
+  @media (max-width: ${({ theme }) => theme.mediaQueries.mobile}) {
+    width: 90%;
+  }
+`;

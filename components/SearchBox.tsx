@@ -9,12 +9,14 @@ interface PropType {
   username: string;
   setUsername: Function;
   searchHandler: Function;
+  isLoading: boolean;
 }
 
 const SearchBox: React.FC<PropType> = ({
   username,
   setUsername,
   searchHandler,
+  isLoading,
 }) => {
   return (
     <Container>
@@ -25,7 +27,9 @@ const SearchBox: React.FC<PropType> = ({
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <PrimaryBtn onClick={() => searchHandler()}>search</PrimaryBtn>
+        <PrimaryBtn disabled={isLoading} onClick={() => searchHandler()}>
+          search
+        </PrimaryBtn>
       </SearchContainer>
     </Container>
   );
